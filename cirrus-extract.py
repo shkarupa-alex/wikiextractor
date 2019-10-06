@@ -179,7 +179,8 @@ def process_dump(input_file, out_file, file_size, file_compress):
             text = re.sub(r'  \^ .*', '', text)
             url = urlbase + 'wiki?curid=' + id
             header = '<doc id="%s" url="%s" title="%s" language="%s" revision="%s">\n' % (id, url, title, language, revision)
-            page = header + title + '\n\n' + text + '\n</doc>\n'
+            # page = header + title + '\n\n' + text + '\n</doc>\n'
+            page = title + '\n' + text + '\n'
             output.write(page.encode('utf-8'))
 
 # ----------------------------------------------------------------------
