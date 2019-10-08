@@ -176,7 +176,7 @@ def process_dump(input_file, out_file, file_size, file_compress):
             text = content['text']
             # drop references:
             # ^ The Penguin Dictionary
-            text = re.sub(r'  \^ .*', '', text)
+            # text = re.sub(r'  \^ .*', '', text)
             url = urlbase + 'wiki?curid=' + id
             header = '<doc id="%s" url="%s" title="%s" language="%s" revision="%s">\n' % (id, url, title, language, revision)
             # page = header + title + '\n\n' + text + '\n</doc>\n'
