@@ -126,12 +126,14 @@ class Extractor(object):
         """
         logging.debug("%s\t%s", self.id, self.title)
         text = ''.join(self.page)
-        url = get_url(self.id)
-        header = '<doc id="%s" url="%s" title="%s" language="%s" revision="%s">\n' % (self.id, url, self.title, self.language, self.revision)
+        # url = get_url(self.id)
+        # header = '<doc id="%s" url="%s" title="%s" language="%s" revision="%s">\n' % (self.id, url, self.title, self.language, self.revision)
         # Separate header from text with a newline.
-        header += self.title + '\n\n'
+        # header += self.title + '\n\n'
+        header = self.title + '\n'
         header = header.encode('utf-8')
-        footer = "\n</doc>\n"
+        # footer = "\n</doc>\n"
+	footer = "\n\n"
         out.write(header)
         text = clean(self, text)
         for line in compact(text):
@@ -180,8 +182,8 @@ def process_dump(input_file, out_file, file_size, file_compress):
             # drop references:
             # ^ The Penguin Dictionary
             # text = re.sub(r'  \^ .*', '', text)
-            url = urlbase + 'wiki?curid=' + id
-            header = '<doc id="%s" url="%s" title="%s" language="%s" revision="%s">\n' % (id, url, title, language, revision)
+            # url = urlbase + 'wiki?curid=' + id
+            # header = '<doc id="%s" url="%s" title="%s" language="%s" revision="%s">\n' % (id, url, title, language, revision)
             # page = header + title + '\n\n' + text + '\n</doc>\n'
             page = title + '\n' + text + '\n'
             output.write(page.encode('utf-8'))
