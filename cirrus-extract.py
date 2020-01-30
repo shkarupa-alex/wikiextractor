@@ -33,6 +33,9 @@ Each file will contain several documents in the format:
         </doc>
 
 """
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 
 import sys, os.path, time
 import re
@@ -72,7 +75,7 @@ class NextFile(object):
 
     def _dirname(self):
         char1 = self.dir_index % 26
-        char2 = self.dir_index / 26 % 26
+        char2 = self.dir_index // 26 % 26
         return os.path.join(self.path_name, '%c%c' % (ord('A') + char2, ord('A') + char1))
 
     def _filepath(self):
@@ -109,9 +112,9 @@ class OutputSplitter(object):
 
     def open(self, filename):
         if self.compress:
-            return bz2.BZ2File(filename + '.bz2', 'w')
+            return bz2.BZ2File(filename + '.bz2', 'wb')
         else:
-            return open(filename, 'w')
+            return open(filename, 'wb')
 
 # ----------------------------------------------------------------------
 
